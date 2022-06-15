@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="warning"></div>
 <div class="container">
     <div class="calculator">
         <input type="text" class="tela" disabled/>
@@ -58,6 +59,7 @@
         </div>
     </div>
 </div>
+<img src="boom.gif" class="img" style="display:none ;" alt="">
     <script>
 
         let firstNum = null;
@@ -69,17 +71,29 @@
         const number = (val) => {
 
             if(firstNum === null){
-                firstNum = val
+                if(val === '.'){
+                    firstNum = "0" + val
+                }else{
+                    firstNum = val
+                }
                 tela.value = firstNum
             } else if(firstNum !== null && act === null){
+                if(firstNum.length < 6){
                     firstNum = firstNum + val
                     tela.value = firstNum
+                }
             }else if(firstNum !== null && act !== null && secondNum === null){
-                secondNum =  val
+                if(val === '.'){
+                    secondNum = "0" + val
+                }else{
+                    secondNum =  val
+                }
                 tela.value = secondNum
             }else if(firstNum !== null && act !== null && secondNum !== null){
+                if(secondNum.length < 6){
                 secondNum = secondNum + val
                 tela.value = secondNum
+                }
             }
         }
 
@@ -117,7 +131,42 @@
             firstNum = null;
             secondNum = null;
             act = null;
+         if(String(resultado).length < 7){
             tela.value = resultado
+         }
+            else if(String(resultado).length > 7 && String(resultado).length < 10){
+               tela.style.fontSize = '28px'
+               tela.value = resultado
+           }   else if(String(resultado).length > 10 && String(resultado).length < 11){
+               tela.style.fontSize = '22px'
+               tela.value = resultado
+           }
+           else{
+               document.querySelector('.warning').innerText = 'o resultado é um numero maior que meus processadores não podem processar, desculpe por ser uma calculadora inutil... vou explodir!'
+               setTimeout(() => {
+                tela.value = "3"
+               }, 100);
+               setTimeout(() => {
+                tela.value = "2"
+               }, 1000);
+               setTimeout(() => {
+                tela.value = "1"
+               }, 2000);
+               setTimeout(() => {
+                document.querySelector('.calculator').style.display = 'none'
+               }, 3000);
+               setTimeout(() => {
+                document.querySelector('.img').style.display = 'block'
+               }, 3010);
+
+               setTimeout(() => {
+                document.querySelector('.img').style.display = 'none'
+               }, 4000);
+               
+               
+
+           }
+
 
         }
 
