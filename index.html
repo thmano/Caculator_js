@@ -6,55 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caculator in JS</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="calculator">
-<div class="tela"></div>
-    <div class="buttons">
-        <div class="numeros">
-            <div class="row">
-                <button  class="number num1" onclick="number('1')">1</button>
-                <button  class="number num2" onclick="number('2')">2</button>
-                <button  class="number num3" onclick="number('3')">3</button>
+<div class="container">
+    <div class="calculator">
+        <input type="text" class="tela" disabled/>
+        <div class="buttons">
+            <div class="numeros">
+                <div class="row">
+                    <button  class="number num1 button-30" onclick="number('1')">1</button>
+                    <button  class="number num2  button-30" onclick="number('2')">2</button>
+                    <button  class="number num3  button-30" onclick="number('3')">3</button>
+                </div>
+                <div class="row">
+                    <button  class="number num4  button-30" onclick="number('4')">4</button>
+                    <button  class="number num5  button-30" onclick="number('5')">5</button>
+                    <button  class="number num6  button-30" onclick="number('6')">6</button>
+                </div>
+                <div class="row">
+                    <button  class="number num7  button-30" onclick="number('7')">7</button>
+                    <button  class="number num8  button-30" onclick="number('8')">8</button>
+                    <button  class="number num9  button-30" onclick="number('9')">9</button>
+                </div>
+                <div class="row">
+                    <button  class="number num0  button-30" onclick="number('0')">0</button>
+                    <button  class="number virg  button-30" onclick="number('.')">,</button>
+                </div>
             </div>
-            <div class="row">
-                <button  class="number num4" onclick="number('4')">4</button>
-                <button  class="number num5" onclick="number('5')">5</button>
-                <button  class="number num6" onclick="number('6')">6</button>
+            
+            <div class="actions">
+                <div class="row">
+                    <button class="action  button-30" onclick="action('soma')">+</button>
+                </div>
+                <div class="row">
+                    <button class="action  button-30" onclick="action('sub')">-</button>
+                </div>
+                <div class="row">
+                    <button class="action  button-30" onclick="action('div')">/</button>
+                </div>
+                <div class="row">
+                    <button class="action  button-30" onclick="action('mult')">*</button>
+                </div>
             </div>
-            <div class="row">
-                <button  class="number num7" onclick="number('7')">7</button>
-                <button  class="number num8" onclick="number('8')">8</button>
-                <button  class="number num9" onclick="number('9')">9</button>
-            </div>
-            <div class="row">
-                <button  class="number num0" onclick="number('0')">0</button>
-                <button  class="number virg" onclick="number('.')">,</button>
-            </div>
+            
         </div>
-        
-        <div class="actions">
-            <div class="row">
-                <button class="action" onclick="action('soma')">+</button>
-            </div>
-            <div class="row">
-                <button class="action" onclick="action('sub')">-</button>
-            </div>
-            <div class="row">
-                <button class="action" onclick="action('div')">/</button>
-            </div>
-            <div class="row">
-                <button class="action" onclick="action('mult')">*</button>
-            </div>
+        <div class="res">
+            <button class="result  button-30" onclick="result()">=</button>
         </div>
-        
-    </div>
-    <div class="res">
-        <button class="result" onclick="result()">=</button>
     </div>
 </div>
-    
-
     <script>
 
         let firstNum = null;
@@ -67,16 +70,16 @@
 
             if(firstNum === null){
                 firstNum = val
-                tela.innerText = firstNum
+                tela.value = firstNum
             } else if(firstNum !== null && act === null){
                     firstNum = firstNum + val
-                    tela.innerText = firstNum
+                    tela.value = firstNum
             }else if(firstNum !== null && act !== null && secondNum === null){
                 secondNum =  val
-                tela.innerText = secondNum
+                tela.value = secondNum
             }else if(firstNum !== null && act !== null && secondNum !== null){
                 secondNum = secondNum + val
-                tela.innerText = secondNum
+                tela.value = secondNum
             }
         }
 
@@ -114,7 +117,7 @@
             firstNum = null;
             secondNum = null;
             act = null;
-            tela.innerText = resultado
+            tela.value = resultado
 
         }
 
